@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tubocerto.workshop.domain.User;
+import com.tubocerto.workshop.dto.UserDTO;
 import com.tubocerto.workshop.repository.UserRepository;
 import com.tubocerto.workshop.services.exception.ObjectNotFoundException;
 
@@ -25,5 +26,13 @@ public class UserService {
 			throw new ObjectNotFoundException("Objeto não encontrado");
 		}
 		return user;
+	}
+	
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDTO) {
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail(), objDTO.getPhone(), objDTO.getPassword(), objDTO.getFilial());
 	}
 }
